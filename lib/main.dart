@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_app/getState.dart';
+import 'package:flutter_app/test_.dart';
 
 // 应用入口
 void main() => runApp(MyApp()); // => 这是 Dart 中单行函数或方法的简写
@@ -21,6 +23,8 @@ class MyApp extends StatelessWidget {
         // 注册首页路由
         '/':(context)=> MyHomePage(title: 'Flutter Demo Home Page',),
         // 可以添加其他路由注册信息
+        "counter":(context) => CounterWidget(),
+        "getState":(context) => GetStateWidget(),
       },
       // 只会对命名路由生效
       onGenerateRoute: (RouteSettings settings) {
@@ -109,7 +113,18 @@ class NewRoute extends StatelessWidget {
         title: Text('New rout'),
       ),
       body: Center(
-        child: Text('This is new route'),
+        child: new Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            Text('This is new route'),
+            FlatButton(
+              child: Text("测试"),
+              onPressed: () {
+                Navigator.pushNamed(context, "getState");
+              },
+            ),
+          ],
+        )
       ),
     );
   }
